@@ -15,15 +15,22 @@
    <!-- 🌐 Navigation Bar -->
 <nav class="navbar">
   <div class="logo">Muthuraj R</div>
+  
+  <!-- Mobile Menu Toggle -->
+  <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  
   <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="closeMobileMenu()">Home</a></li>
+    <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+    <li><a href="#certifications" onclick="closeMobileMenu()">Certifications</a></li>
+    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
     <li><button id="themeToggle" onclick="toggleTheme()">🌙</button></li>
   </ul>
-
 </nav>
 
  
@@ -367,6 +374,33 @@
     function toggleTheme() {
       document.body.classList.toggle('dark');
     }
+
+    // Mobile menu functionality
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      navLinks.classList.toggle('active');
+      mobileToggle.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      navLinks.classList.remove('active');
+      mobileToggle.classList.remove('active');
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navbar = document.querySelector('.navbar');
+      const navLinks = document.querySelector('.nav-links');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      
+      if (!navbar.contains(event.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      }
+    });
   </script>
   <footer class="site-footer">
     <div class="footer-content">
